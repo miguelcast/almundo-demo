@@ -5,7 +5,7 @@ import { Header } from '../Header';
 const Layout = ({ children }) => (
   <Fragment>
     <Header />
-    <Box p={3}>
+    <Box p={[0, 0, 3]}>
       {children}
     </Box>
   </Fragment>

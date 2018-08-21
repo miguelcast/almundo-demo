@@ -37,6 +37,7 @@ class Index extends Component {
       await this.setState({ hotels, loading: false });
     } catch (e) {
       console.log('Error get api.');
+      await this.setState({ loading: false });
     }
   };
 
@@ -56,7 +57,7 @@ class Index extends Component {
         <Box width={[1, 1, 3/12]} >
           <Filters setName={this.setName} setStarts={this.setStarts} />
         </Box>
-        <Box width={[1, 1, 9/12]} pl={[0, 0, 3]}>
+        <Box width={[1, 1, 9/12]} pl={3} pr={[3, 3, 0]} pt={[3, 3, 0]}>
           {loading ? (
             <ReactLoading type="spin" color="blue" />
           ) : (

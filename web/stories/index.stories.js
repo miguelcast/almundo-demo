@@ -8,6 +8,9 @@ import '../style/global';
 storiesOf('Button', module)
   .add('with text', () => (
     <Button>Hello Button</Button>
+  ))
+  .add('with size large', () => (
+    <Button size="large">Hello Button</Button>
   ));
 
 storiesOf('Icon', module)

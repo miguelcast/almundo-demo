@@ -6,12 +6,17 @@ import Starts from '../shared/Starts';
 import Amenities from './Amenities';
 import config from '../../config';
 
+const { staticFolder = '' } = config;
 const imagePath = `${config.api || ''}${config.imagePath || ''}`;
 
 const CardItem = ({ image, price, name, stars, amenities }) => (
   <Card flex={{ mb: 3, flexDirection: ['column', 'column', 'row'] }}>
     <WrapperImage width={[1, 1, 2/5]}>
-      <Image src={`${imagePath}${image}`} alt={name} />
+      <Image
+        src={`${imagePath}${image}`}
+        alt={name}
+        onError={(e) => e.target.src=`${staticFolder}/images/no-image-available.png`}
+      />
     </WrapperImage>
     <Box width={[1, 1, 1/2]} pl={[0, 0, 3]} py={[3, 3, 0]} flex='1 1 auto' css={{ position: 'relative' }}>
       <LineDot />

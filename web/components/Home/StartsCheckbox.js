@@ -56,7 +56,7 @@ class StartsCheckbox extends Component {
     return (
       <Box width={1}>
         <Label>
-          <input type="checkbox" checked={all} name="all" onClick={this.checkAll} />
+          <input type="checkbox" checked={all} name="all" onChange={this.checkAll} />
           <span>Todas las estrellas</span>
         </Label>
         {listStart.map(num => (
@@ -66,7 +66,7 @@ class StartsCheckbox extends Component {
               checked={all ? false : checked[num]}
               value={num}
               name={`s${num}`}
-              onClick={() => this.check(num)}
+              onChange={() => this.check(num)}
             />
             <Starts number={num} />
           </Label>

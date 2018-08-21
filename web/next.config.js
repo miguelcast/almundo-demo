@@ -1,6 +1,16 @@
-module.exports = {
-  webpack: (config) => {
-    config.plugins = config.plugins || []
+const withSourceMaps = require('@zeit/next-source-maps');
+
+module.exports = withSourceMaps({
+  webpack: (config, { dev }) => {
+    if (!dev) {
+      config.devtool = 'source-map';
+      for (const plugin of config.plugins) {
+        if (plugin['constructor']['name'] === 'UglifyJsPlugin') {
+          plugin.options.sourceMap = true;
+          break;
+        }
+      }
+    }
     return config;
   },
   publicRuntimeConfig: { // Will be available on both server and client
@@ -10,4 +20,4 @@ module.exports = {
       : 'http://localhost:3001/',
     imagePath: '/assets/images/hotels/',
   }
-};
+});

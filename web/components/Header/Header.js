@@ -15,6 +15,10 @@ const HeaderStyled = styled(Flex)`
   height: 80px;
   padding-left: 12px;
   border-bottom: 10px #4c789c;
+  
+  @media (max-width: 48em) {
+    height: 64px;
+  }
 `;
 
 export default Header;

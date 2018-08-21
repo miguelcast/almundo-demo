@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-source-maps": "^0.0.2",
     "axios": "^0.18.0",
     "grid-styled": "^5.0.2",
     "next": "^6.1.1",
@@ -13,7 +14,7 @@
     "styled-components": "^3.4.2"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 3000",
     "build": "next build",
     "start": "next start",
     "storybook": "start-storybook -p 9001 -s ./static",

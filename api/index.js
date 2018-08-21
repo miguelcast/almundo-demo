@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const compression = require('compression')
+const config = require('config');
 const app = express();
 
 const hotels = require('./data/data');
 
 app.use(cors());
+app.use(compression());
 
 // statics files
 app.use(express.static('public'));
@@ -29,4 +32,4 @@ app.get('/', (req, res) => {
 });
 
 // server
-app.listen(3001, () => console.log('Example app listening on port 3001!'));
+app.listen(config.get('general.port'), () => console.log('Almundo app listening on!'));
