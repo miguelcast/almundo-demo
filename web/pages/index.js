@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Flex, Box } from 'grid-styled';
-import ReactLoading from 'react-loading';
 import { Filters } from '../components/Home';
 import { List } from '../components/Hotel';
 import { Loading } from '../components/shared';
@@ -9,11 +8,10 @@ import config from '../config';
 
 class Index extends Component {
   state = {
-    hotels: [],
+    hotels: null,
     name: null,
     starts: null,
     loading: false,
-    error: null,
   };
 
   async componentDidMount() {
@@ -36,10 +34,10 @@ class Index extends Component {
         starts,
       }});
       const hotels = await res.data;
-      await this.setState({ hotels, loading: false, error: null });
+      await this.setState({ hotels, loading: false });
     } catch (e) {
       console.log('Error get api.');
-      await this.setState({ loading: false, error: true });
+      await this.setState({ loading: false });
     }
   };
 
@@ -54,6 +52,13 @@ class Index extends Component {
   render() {
     const { hotels, loading } = this.state;
 
+    const message = hotels === null ? '' : (
+      <span style={{ color: '#444444' }}>
+        No se encontraron hoteles con los filtros seleccionados.<br />
+        Cambia la configuración de filtros.
+      </span>
+    );
+
     return (
       <Flex flexDirection={['column', 'column', 'row']}>
         <Box width={[1, 1, 3/12]} >
@@ -63,7 +68,9 @@ class Index extends Component {
           {loading ? (
             <Loading />
           ) : (
-            <List hotels={hotels} />
+            hotels && hotels.length > 0 ? (
+              <List hotels={hotels} />
+            ) : message
           )}
         </Box>
       </Flex>
