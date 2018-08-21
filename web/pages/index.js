@@ -4,6 +4,7 @@ import { Flex, Box } from 'grid-styled';
 import ReactLoading from 'react-loading';
 import { Filters } from '../components/Home';
 import { List } from '../components/Hotel';
+import { Loading } from '../components/shared';
 import config from '../config';
 
 class Index extends Component {
@@ -12,6 +13,7 @@ class Index extends Component {
     name: null,
     starts: null,
     loading: false,
+    error: null,
   };
 
   async componentDidMount() {
@@ -34,10 +36,10 @@ class Index extends Component {
         starts,
       }});
       const hotels = await res.data;
-      await this.setState({ hotels, loading: false });
+      await this.setState({ hotels, loading: false, error: null });
     } catch (e) {
       console.log('Error get api.');
-      await this.setState({ loading: false });
+      await this.setState({ loading: false, error: true });
     }
   };
 
@@ -59,7 +61,7 @@ class Index extends Component {
         </Box>
         <Box width={[1, 1, 9/12]} pl={3} pr={[3, 3, 0]} pt={[3, 3, 0]}>
           {loading ? (
-            <ReactLoading type="spin" color="blue" />
+            <Loading />
           ) : (
             <List hotels={hotels} />
           )}
