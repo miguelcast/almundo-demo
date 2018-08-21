@@ -1,0 +1,26 @@
+{
+  "name": "Almundo-web",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "grid-styled": "^5.0.2",
+    "next": "^6.1.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-loading": "^2.0.3",
+    "styled-components": "^3.4.2"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "storybook": "start-storybook -p 9001 -s ./static",
+    "build-storybook": "build-storybook"
+  },
+  "devDependencies": {
+    "@storybook/react": "^3.4.10",
+    "babel-plugin-styled-components": "^1.5.1"
+  }
+}
